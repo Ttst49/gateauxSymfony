@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GateauController!{% endblock %}
+
+{% block body %}
+
+   {{ form_start(formGateau) }}
+   {{ form_row(formGateau.name) }}
+   {{ form_row(formGateau.description) }}
+
+
+
+    <ul class="ingredients"
+        data-index="{{ formGateau.ingredients|length > 0 ? formGateau.ingredients|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(formGateau.ingredients.vars.prototype)|e('html_attr') }}"
+    ></ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="ingredients">Add an ingredient</button>
+
+    <ul class="images"
+        data-index="{{ formGateau.images|length > 0 ? formGateau.images|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(formGateau.images.vars.prototype)|e('html_attr') }}"
+    ></ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="images">Add an image</button>
+
+
+    <button type="submit" class="btn btn-primary">Créer un gateau</button>
+    {{ form_end(formGateau) }}
+
+{% endblock %}
